@@ -474,20 +474,35 @@ ls -la dist/
    npm run build:widget
    ```
 
-2. **Upload to CDN**
-   Upload `dist/chatbot-widget.umd.js` to your CDN
+2. **Upload both files to CDN**
+   ```bash
+   # Upload both required files
+   dist/chatbot-widget.umd.js  # Main widget bundle
+   dist/style.css             # Widget styles and themes
+   ```
 
 3. **Integrate into your website**
    ```html
-   <div id="chatbot-widget"></div>
-   <script src="https://your-cdn.com/chatbot-widget.umd.js"></script>
-   <script>
-     ChatbotWidget.init({
-       apiEndpoint: 'https://your-api.com/chat',
-       authToken: 'your-production-token',
-       theme: 'default'
-     });
-   </script>
+   <!DOCTYPE html>
+   <html>
+   <head>
+       <!-- Include widget styles -->
+       <link rel="stylesheet" href="https://your-cdn.com/style.css">
+   </head>
+   <body>
+       <div id="chatbot-widget"></div>
+       
+       <!-- Include widget script -->
+       <script src="https://your-cdn.com/chatbot-widget.umd.js"></script>
+       <script>
+         ChatbotWidget.init({
+           apiEndpoint: 'https://your-api.com/chat',
+           authToken: 'your-production-token',
+           theme: 'default'
+         });
+       </script>
+   </body>
+   </html>
    ```
 
 ### Option 2: Self-Hosted
