@@ -31,6 +31,7 @@ A beautiful, animated, and highly customizable chatbot UI widget that can be int
 - [Configuration](#configuration)
 - [Environment Variables](#environment-variables)
 - [Development](#development)
+- [Distribution Files](#distribution-files)
 - [Deployment](#deployment)
 - [API Documentation](#api-documentation)
 - [Troubleshooting](#troubleshooting)
@@ -261,6 +262,207 @@ curl -X POST "YOUR_API_ENDPOINT" \
     "messages": [{"role": "user", "content": "Hello test"}],
     "include_sources": false
   }'
+```
+
+## 📦 Distribution Files
+
+After running `npm run build:widget`, the following files are generated in the `dist/` folder:
+
+### 🚀 **Generated Files**
+
+| File | Size | Description |
+|------|------|-------------|
+| `chatbot-widget.umd.js` | ~1.3MB | Complete widget bundle with all functionality |
+| `style.css` | ~15KB | Widget styles, themes, and animations |
+| `integration-example.html` | - | Ready-to-use integration example |
+| `test.html` | - | Test page for widget functionality |
+
+### 📋 **File Details**
+
+#### **chatbot-widget.umd.js**
+- **Purpose**: Main widget file containing all React components and dependencies
+- **Format**: UMD (Universal Module Definition) - works in browsers, Node.js, AMD
+- **Contents**: 
+  - React and React DOM
+  - All chatbot components and hooks
+  - Chart.js for chart rendering
+  - Speech recognition functionality
+  - Markdown parsing and syntax highlighting
+- **Usage**: Include this file and call `ChatbotWidget.init()`
+
+#### **style.css**
+- **Purpose**: All widget styles and themes
+- **Contents**:
+  - Base component styles
+  - Theme variations (default, dark, ocean, sunset)
+  - Responsive design rules
+  - Animation keyframes
+- **Usage**: Link in HTML head or import in your build system
+
+### 🔧 **Integration Methods**
+
+#### **Method 1: Direct Integration**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body>
+    <div id="chatbot-widget"></div>
+    
+    <script src="./dist/chatbot-widget.umd.js"></script>
+    <script>
+        ChatbotWidget.init({
+            apiEndpoint: 'https://your-api.com/chat',
+            authToken: 'your-token',
+            theme: 'default',
+            welcomeMessage: 'Hello! How can I help you?'
+        });
+    </script>
+</body>
+</html>
+```
+
+#### **Method 2: CDN Hosting**
+1. **Upload files to your CDN**:
+   ```bash
+   # Upload to your CDN service
+   aws s3 cp dist/chatbot-widget.umd.js s3://your-bucket/
+   aws s3 cp dist/style.css s3://your-bucket/
+   ```
+
+2. **Reference from any website**:
+   ```html
+   <link rel="stylesheet" href="https://cdn.yoursite.com/style.css">
+   <script src="https://cdn.yoursite.com/chatbot-widget.umd.js"></script>
+   <script>
+       ChatbotWidget.init({
+           apiEndpoint: 'https://your-api.com/chat',
+           authToken: 'your-production-token'
+       });
+   </script>
+   ```
+
+#### **Method 3: npm/Module Integration**
+```bash
+# Copy files to your project
+cp dist/chatbot-widget.umd.js public/
+cp dist/style.css public/
+
+# Reference in your application
+```
+
+### 🎮 **Widget API Methods**
+
+Once loaded, the widget exposes these methods:
+
+```javascript
+// Initialize the widget
+ChatbotWidget.init({
+    apiEndpoint: 'https://your-api.com/chat',
+    authToken: 'your-token',
+    theme: 'dark',
+    // ... other options
+});
+
+// Control widget visibility
+ChatbotWidget.open();
+ChatbotWidget.close();
+
+// Send messages programmatically
+ChatbotWidget.sendMessage('Hello from external code!');
+
+// Update configuration
+ChatbotWidget.updateConfig({ 
+    theme: 'ocean',
+    welcomeMessage: 'Updated message!' 
+});
+
+// Destroy widget completely
+ChatbotWidget.destroy();
+
+// Event listeners
+window.addEventListener('chatbot:opened', () => {
+    console.log('Chatbot opened');
+});
+
+window.addEventListener('chatbot:closed', () => {
+    console.log('Chatbot closed');
+});
+
+window.addEventListener('chatbot:message', (event) => {
+    console.log('New message:', event.detail);
+});
+```
+
+### 🧪 **Testing Built Files**
+
+#### **Option 1: Local Test Server**
+```bash
+# Serve the dist folder
+cd dist
+python -m http.server 8080
+# or
+npx serve .
+
+# Open in browser
+open http://localhost:8080/test.html
+```
+
+#### **Option 2: Direct File Opening**
+```bash
+# Open test file directly
+open dist/test.html
+
+# Open integration example
+open dist/integration-example.html
+```
+
+### 🔍 **File Validation**
+
+Verify your build was successful:
+
+```bash
+# Check if files exist
+ls -la dist/
+# Should show: chatbot-widget.umd.js, style.css, test.html, integration-example.html
+
+# Check file sizes
+du -h dist/*
+# chatbot-widget.umd.js should be ~1.3MB
+# style.css should be ~15KB
+
+# Test widget loads correctly
+node -e "
+const fs = require('fs');
+const content = fs.readFileSync('dist/chatbot-widget.umd.js', 'utf8');
+console.log('✅ Widget file contains ChatbotWidget:', content.includes('ChatbotWidget'));
+"
+```
+
+### 📱 **Mobile Optimization**
+
+The built widget is automatically optimized for mobile:
+
+- **Responsive design**: Adapts to screen sizes
+- **Touch-friendly**: Optimized tap targets
+- **Performance**: Lazy loading of heavy components
+- **Network-aware**: Handles poor connections gracefully
+
+### 🔄 **Rebuilding**
+
+To rebuild after changes:
+
+```bash
+# Clean previous build
+rm -rf dist/
+
+# Rebuild widget
+npm run build:widget
+
+# Verify new build
+ls -la dist/
 ```
 
 ## 🚀 Deployment
