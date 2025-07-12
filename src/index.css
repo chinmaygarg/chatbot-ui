@@ -1,0 +1,96 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Default Theme Variables */
+:root {
+  --chatbot-primary: #3B82F6;
+  --chatbot-secondary: #8B5CF6;
+  --chatbot-background: #FFFFFF;
+  --chatbot-surface: #F9FAFB;
+  --chatbot-text: #111827;
+  --chatbot-text-secondary: #6B7280;
+  --chatbot-border: #E5E7EB;
+  --chatbot-hover: #F3F4F6;
+  --chatbot-accent: #10B981;
+}
+
+/* Dark Theme */
+[data-chatbot-theme="dark"] {
+  --chatbot-primary: #60A5FA;
+  --chatbot-secondary: #A78BFA;
+  --chatbot-background: #111827;
+  --chatbot-surface: #1F2937;
+  --chatbot-text: #F9FAFB;
+  --chatbot-text-secondary: #9CA3AF;
+  --chatbot-border: #374151;
+  --chatbot-hover: #374151;
+  --chatbot-accent: #34D399;
+}/* Ocean Theme */
+[data-chatbot-theme="ocean"] {
+  --chatbot-primary: #0891B2;
+  --chatbot-secondary: #0E7490;
+  --chatbot-background: #F0F9FF;
+  --chatbot-surface: #E0F2FE;
+  --chatbot-text: #0C4A6E;
+  --chatbot-text-secondary: #0369A1;
+  --chatbot-border: #BAE6FD;
+  --chatbot-hover: #BAE6FD;
+  --chatbot-accent: #06B6D4;
+}
+
+/* Sunset Theme */
+[data-chatbot-theme="sunset"] {
+  --chatbot-primary: #F97316;
+  --chatbot-secondary: #EA580C;
+  --chatbot-background: #FFF7ED;
+  --chatbot-surface: #FED7AA;
+  --chatbot-text: #7C2D12;
+  --chatbot-text-secondary: #C2410C;
+  --chatbot-border: #FDBA74;
+  --chatbot-hover: #FED7AA;
+  --chatbot-accent: #FB923C;
+}
+
+/* Custom Scrollbar */
+.chatbot-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}.chatbot-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--chatbot-border);
+  border-radius: 3px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--chatbot-text-secondary);
+}
+
+/* Typography for rendered content */
+.chatbot-content h1,
+.chatbot-content h2,
+.chatbot-content h3,
+.chatbot-content h4,
+.chatbot-content h5,
+.chatbot-content h6 {
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chatbot-content h1 { font-size: 1.5rem; }
+.chatbot-content h2 { font-size: 1.25rem; }
+.chatbot-content h3 { font-size: 1.125rem; }
+.chatbot-content h4 { font-size: 1rem; }
+
+.chatbot-content p {
+  margin-bottom: 0.75rem;
+}
+
+.chatbot-content ul,
+.chatbot-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}

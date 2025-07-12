@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Widget Integration Examples</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #718096;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2d3748;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        p { 
+            color: #4a5568; 
+            line-height: 1.6; 
+        }
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+        }
+        .demo-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            background: #3b82f6;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        .option-list {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .option-list li {
+            margin: 8px 0;
+            color: #4a5568;
+        }
+        .option-list code {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #2d3748;
+        }
+        .example-section {
+            background: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Chatbot Widget Integration</h1>
+        <p class="subtitle">Ready-to-use examples for integrating the chatbot widget into your website</p>
+        
+        <div class="example-section">
+            <h2>🚀 Quick Integration (2 steps)</h2>
+            <p><strong>Step 1:</strong> Add the widget container and script to your HTML:</p>
+            <pre><code>&lt;!-- Add this where you want the chatbot to appear --&gt;
+&lt;div id="chatbot-widget"&gt;&lt;/div&gt;
+
+&lt;!-- Load the widget script --&gt;
+&lt;script src="https://your-cdn.com/chatbot-widget.umd.js"&gt;&lt;/script&gt;</code></pre>
+
+            <p><strong>Step 2:</strong> Initialize with your API configuration:</p>
+            <pre><code>&lt;script&gt;
+  ChatbotWidget.init({
+    apiEndpoint: 'https://your-api.com/chat',
+    authToken: 'your-api-token',
+    theme: 'default',
+    welcomeMessage: 'Hello! How can I help you today?'
+  });
+&lt;/script&gt;</code></pre>
+        </div>
+
+        <h2>🔧 Popular API Configurations</h2>
+
+        <h3>OpenAI API</h3>
+        <pre><code>ChatbotWidget.init({
+  apiEndpoint: 'https://api.openai.com/v1/chat/completions',
+  authToken: 'sk-proj-your-openai-api-key',
+  theme: 'default'
+});</code></pre>
+
+        <h3>Anthropic Claude API</h3>
+        <pre><code>ChatbotWidget.init({
+  apiEndpoint: 'https://api.anthropic.com/v1/messages',
+  authToken: 'sk-ant-your-anthropic-key',
+  theme: 'dark'
+});</code></pre>
+
+        <h3>Local LLM Server (Ollama, LM Studio, etc.)</h3>
+        <pre><code>ChatbotWidget.init({
+  apiEndpoint: 'http://localhost:11434/v1/chat/completions',
+  authToken: 'ollama',  // or your local auth token
+  theme: 'ocean'
+});</code></pre>
+
+        <h3>Custom Backend</h3>
+        <pre><code>ChatbotWidget.init({
+  apiEndpoint: 'https://your-company-api.com/chat',
+  authToken: 'your-bearer-token',
+  theme: 'sunset',
+  customHeaders: {
+    'X-API-Version': '1.0',
+    'X-Client-ID': 'web-widget'
+  }
+});</code></pre>
+
+        <h2>⚙️ Configuration Options</h2>
+        <div class="option-list">
+            <h3>Required Options</h3>
+            <ul>
+                <li><code>apiEndpoint</code> - Your chat API endpoint URL</li>
+            </ul>
+
+            <h3>Authentication (choose one)</h3>
+            <ul>
+                <li><code>authToken</code> - Bearer token for Authorization header</li>
+                <li><code>apiKey</code> - API key for X-API-Key header</li>
+            </ul>
+
+            <h3>Appearance Options</h3>
+            <ul>
+                <li><code>theme</code> - Theme: 'default', 'dark', 'ocean', 'sunset'</li>
+                <li><code>primaryColor</code> - Custom primary color (hex)</li>
+                <li><code>position</code> - Widget position: 'bottom-right', 'bottom-left'</li>
+            </ul>
+
+            <h3>Behavior Options</h3>
+            <ul>
+                <li><code>welcomeMessage</code> - Custom welcome message</li>
+                <li><code>autoOpen</code> - Auto-open chat on page load (boolean)</li>
+                <li><code>enableVoiceInput</code> - Enable voice input (boolean, default: true)</li>
+                <li><code>streamingEnabled</code> - Enable streaming responses (boolean, default: true)</li>
+                <li><code>maxMessageLength</code> - Max characters per message (number, default: 1000)</li>
+            </ul>
+
+            <h3>Advanced Options</h3>
+            <ul>
+                <li><code>debug</code> - Enable debug logging (boolean)</li>
+                <li><code>timeout</code> - Request timeout in milliseconds (default: 30000)</li>
+                <li><code>retryAttempts</code> - Number of retry attempts (default: 3)</li>
+                <li><code>customHeaders</code> - Additional HTTP headers (object)</li>
+            </ul>
+        </div>
+
+        <h2>🎮 Widget Control Methods</h2>
+        <div class="demo-buttons">
+            <button onclick="ChatbotWidget.open()">Open Chat</button>
+            <button onclick="ChatbotWidget.close()">Close Chat</button>
+            <button onclick="changeTheme()">Change Theme</button>
+            <button onclick="sendDemoMessage()">Send Demo Message</button>
+            <button onclick="testChart()">Test Chart Rendering</button>
+            <button onclick="testMap()">Test Map Rendering</button>
+        </div>
+
+        <h2>📡 Available Methods</h2>
+        <pre><code>// Initialize the widget
+ChatbotWidget.init(config);
+
+// Control widget visibility
+ChatbotWidget.open();
+ChatbotWidget.close();
+
+// Send messages programmatically
+ChatbotWidget.sendMessage('Hello from external code!');
+
+// Update configuration
+ChatbotWidget.updateConfig({ theme: 'dark' });
+
+// Destroy widget
+ChatbotWidget.destroy();
+
+// Listen to events
+window.addEventListener('chatbot:opened', () => console.log('Chat opened'));
+window.addEventListener('chatbot:closed', () => console.log('Chat closed'));
+window.addEventListener('chatbot:message', (e) => console.log('Message:', e.detail));</code></pre>
+
+        <h2>🎨 Content Rendering Examples</h2>
+        <p>The chatbot can render rich content including charts, maps, code blocks, and tables. Try the buttons above to see examples!</p>
+
+        <h2>🔒 Security Best Practices</h2>
+        <div class="option-list">
+            <ul>
+                <li>Always use HTTPS in production</li>
+                <li>Store API tokens securely (never in client-side code)</li>
+                <li>Implement rate limiting on your backend</li>
+                <li>Use environment variables for sensitive configuration</li>
+                <li>Configure Content Security Policy (CSP) headers</li>
+                <li>Validate and sanitize all user inputs</li>
+            </ul>
+        </div>
+
+        <h2>📱 Mobile Support</h2>
+        <p>The widget is fully responsive and works seamlessly on mobile devices with touch-friendly interactions, optimized layouts, and voice input support where available.</p>
+    </div>
+
+    <!-- Chatbot Widget Integration -->
+    <div id="chatbot-widget"></div>
+    <script src="../dist/chatbot-widget.umd.js"></script>
+    <script>
+        // Initialize the chatbot with demo configuration
+        ChatbotWidget.init({
+            apiEndpoint: import.meta.env.VITE_API_ENDPOINT || '/api/chat',
+            authToken: import.meta.env.VITE_API_AUTH_TOKEN || 'demo-token',
+            theme: 'default',
+            welcomeMessage: 'Welcome! I can help demonstrate various content types including charts, maps, code, and more.',
+            enableVoiceInput: true,
+            streamingEnabled: true,
+            debug: true
+        });
+
+        // Demo functions
+        let currentTheme = 0;
+        const themes = ['default', 'dark', 'ocean', 'sunset'];
+        
+        function changeTheme() {
+            currentTheme = (currentTheme + 1) % themes.length;
+            ChatbotWidget.updateConfig({
+                theme: themes[currentTheme]
+            });
+            console.log('Theme changed to: ' + themes[currentTheme]);
+        }
+
+        function sendDemoMessage() {
+            ChatbotWidget.sendMessage('Hello! Can you show me what you can do?');
+        }
+
+        function testChart() {
+            ChatbotWidget.sendMessage('Show me a sample chart with sales data');
+        }
+
+        function testMap() {
+            ChatbotWidget.sendMessage('Display a map of New York City');
+        }
+
+        // Event listeners for demonstration
+        window.addEventListener('chatbot:opened', () => {
+            console.log('🤖 Chatbot opened');
+        });
+
+        window.addEventListener('chatbot:closed', () => {
+            console.log('🤖 Chatbot closed');
+        });
+
+        window.addEventListener('chatbot:message', (e) => {
+            console.log('💬 Message event:', e.detail);
+        });
+    </script>
+</body>
+</html>
