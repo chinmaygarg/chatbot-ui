@@ -6,7 +6,7 @@
 ✅ CDN URL (Use this!): http://35.201.101.114
 📱 Test your chatbot: http://35.201.101.114/index.html
 🔗 Embed script: http://35.201.101.114/embed.js
-⚡ API endpoint: https://chatbot-api-817805101804.us-central1.run.app
+⚡ API endpoint: http://34.10.108.240:8000/v1/chat/completions
 
 💰 MONTHLY COST: $1-6 + CDN (first 10TB FREE!)
 💵 YOU SAVED: $18/month = $216/year vs Load Balancer setup!
@@ -18,7 +18,7 @@
 <script>
   ChatbotUI.init({
     container: '#chatbot-container',
-    apiUrl: 'https://chatbot-api-817805101804.us-central1.run.app',
+    apiUrl: 'http://34.10.108.240:8000/v1/chat/completions',
     theme: 'default',
     welcomeMessage: 'Hello! How can I help you today?',
     floatingMode: true,
